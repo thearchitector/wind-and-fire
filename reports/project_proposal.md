@@ -24,6 +24,7 @@ We are primarily concerned about reconstructing the environmental data that Gome
 
 ## Next Steps
 1. In the coming week, we hope to get an implementation of the basic, unmodified forest fire model working. The implementation will ideally produce results similar to that shown the Gomes paper.
+  - Elias will work on implementing the CA rules while Erika works on compiling the data needed to tune the CA parameters.
 2. Once we are confident our foundational model is working, we will make the wind-speed based CA rule modifications proposed in the paper.
 3. Once implementation is done, we will work on interpreting our results and begin writing the draft report.
 4. After the draft report is done, we will finalize it and finish the project.
