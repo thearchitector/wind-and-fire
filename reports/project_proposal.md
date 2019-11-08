@@ -16,10 +16,11 @@ The experiment we would like to replicate is a CA simulation of a wildfire that 
 > _Ideally, we will generate a bar chart that mimics the behavior of this one, where the modified CA gives a closer approximation of the number of burned trees than the standard model. If we get a number higher than the base model, the experiment would be a success._
 
 <p align="center"><img src="probability.png"></p>
+
 > _The heat map of probabilities of burning will serve as an indicator to the reliability of our model. If we get a map that is dark in color, that would indicate that our model repeatedly predicted the same burn region for the forest over several simulation runs. A fairly stable result would serve as an argument for why our model could be a viable tool in the allocation of relief resources._
 
 ## Concerns
-[We need to put concerns here].
+We are primarily concerned about reconstructing the environmental data that Gomes et al. used in their paper to calculate the probabilities of fire spread for each cell in their baseline CA. They state that they used the data, but do not go into a lot of detail about how they compiled it. Hopefully, we will be able to create a dataset that is similar to the one they used to find their results.
 
 ## Next Steps
 1. In the coming week, we hope to get an implementation of the basic, unmodified forest fire model working. The implementation will ideally produce results similar to that shown the Gomes paper.
