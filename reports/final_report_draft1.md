@@ -1,4 +1,4 @@
-# Determining the Effect of Wind on Fire Propigation
+# Determining the Effect of Wind on Fire Propagation
 by Elias Gabriel and Erika Lu
 
 # Replicated Experiment
@@ -11,9 +11,9 @@ The authors validate their results by comparing the experimental model with the 
 </p>
 
 <p align="center">
-  <i>Figure 1: Maps comparing the results of a basic fire propigation model and the results of their proposed wind-aware model. Red indicates area where the model was delayed in burning the terrain when compared to the actual fire. Blue indicates areas where the model was ahead in burning the terrain. Gray shows areas where the model and actual fire where aligned.</i>
+  <i>Figure 1: Maps comparing the results of a basic fire propagation model and the results of their proposed wind-aware model. Red indicates area where the model was delayed in burning the terrain when compared to the actual fire. Blue indicates areas where the model was ahead in burning the terrain. Gray shows areas where the model and actual fire where aligned.</i>
 </p>
 
-Comparing the two maps, the amount of red makes it clear that the basic model does not spread as quickly as needed to match the propigation speed in real life. On the contrary the proposed model seems to keep up for the actual data, though the areas where it is ahead of the real fire shows that it leans towards over-weighting wind's effect.
+Comparing the two maps, the amount of red makes it clear that the basic model does not spread as quickly as needed to match the propagation speed in real life. On the contrary the proposed model seems to keep up for the actual data, though the areas where it is ahead of the real fire shows that it leans towards over-weighting wind's effect.
 
 The graphs they produce offer compelling evidence for the validity of their model, and show that wind speed and direction are potential principal factors in determing the spread of wildfire.
