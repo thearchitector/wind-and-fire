@@ -43,7 +43,9 @@ Running our simulation 100 times and recording the results, we were also able to
   <i>A 10 hour simulation run of our barebones model. Without wind the model simply spreads in a uniform and regular square, which does not accurately reflect how fire propagates in real life.</i>
 </p>
 
-The average behavior of our base model yielded an astoundingly rectangular behavior relative to what we expected of the fire based on the models in the paper. We suspect that this is a direct result of the data we used, as the wording in the paper made it extremely difficult to perfectly replicate their method of parsing and interpretation. As such, the system parameters used in the published model might not have been fine-tuned to match our dataset, resulting in an overall higher and more uniform distributiin of fire propagation probabilities.
+The average behavior of our base model yielded an astoundingly rectangular propagation. Clearly, a model without wind influence didn't seem to be applicable or useful for real-world contexts.
+
+It is important to note, however, that our observed behavior is not identical what we expected relative to the fire based on the models in the paper. We suspect that this is a direct result of the data we used, as the wording in the paper made it extremely difficult to perfectly replicate their method of parsing and interpretation. As such, the system parameters used in the published model might not have been fine-tuned to match our dataset, resulting in an overall higher and more uniform distributiin of fire propagation probabilities.
 
 # Replication of Modified Model
 To modify their base model and produce more accurate results, Freire et al. introduced a new rule when defining the behavior of their cellular automata. The new rule was defined to be:
