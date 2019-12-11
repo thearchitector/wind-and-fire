@@ -1,21 +1,72 @@
 # Determining the Effect of Wind on Fire Propagation
 by Elias Gabriel and Erika Lu
 
-# Replicated Experiment
+# Backround Context
 While cellular automata have often been used to simulate wildfires, a devastating fire that hit the forests of Southern Portugal in 2012 exhibited an explosive behavior that was not well captured by existing models. Models for fire spread are valuable to disaster relief organizations and volunteers, as they can help identify where relief resources can be allocated. In these cases, it is important for models to reasonably accurately predict spread patterns and disaster zones.
 
-Freire et al. propose that the incorporation of wind speeds in forest models may create more accurate explanations of fire spread. Our objective was to verify their claims and determine whether factoring in winds creates a better model by comparing our models with real world wildfire data. We replicated their CA simulation of a wildfire that takes wind speed into account. The wind creates a new rule for the CA: the fire can now traverse to non adjacent cells.
+# Replication of Base Model
+Freire et al. proposed that the incorporation of wind speeds in forest models may create more accurate explanations of fire spread. As an initial experiment, our objective was to verify their claims and determine whether factoring in winds creates a better model by comparing our models with real world wildfire data. We replicated their initial cellular model, which adjusts burn and spread probabilities depending on wind speed and direction.
 
-The authors validate their results by comparing the experimental model with the official observed and recorded fire spread data. By contrasting the locations to where fire spread in the observed time interval of 46 hours, they could directly compare the performances between their model and the actual fire. They show their results in figure form.
+Before attempting to replicate the results produced in the paper, we needed to collect the necessary data. We collected data from the original authors as well as their cited sources—fields including vegetation type, vegetation density, wind speed, wind direction, and elevation—for the 29km x 28km area of study in Portugal.
+
+Each of those fields had an effect on the likelihood of a cell burning, which in the paper is defined to be:
+
+```python
+p_burn = P_0(1 + vegetation density)(1 + vegetation type contribution)(wind contribution)(slope contribution)`
+```
+
+Using that equation, we calculated the effective burn probabilities for every cell in our CA and stored them in a NumPy array. By using logical set operations, specifically
+
+```python
+# divide timestep by 3 because our dt is 20 minutes and our wind data is in hours
+able_to_burn = self.dw.get_burn_probabilities(t // 3, self.array) <= randoms
+places_to_burn = (self.array==1) & (adjacent_to_fire>=100) & able_to_burn
+```
+
+were were able to identify which cells in our CA should ignite and burn out in every timestep. In this code snippet, values of 1 indicate cells with flammable material and cells with values of 100 indicate current burning.
 
 <p align="center">
-  <img width=400 src="paperres1.png"><img width=400 src="paperres2.png">
+  <img width=400 src="images/image8.gif"><br />
+  <i>A 10 hour simulation run of our barebones model. Without wind the model simply spreads in a uniform and regular square, which does not accurately reflect how fire propagates in real life.</i>
 </p>
+
+Running our simulation 100 times and recording the results, we were also able to generate a probability map to show the average and predicted behavior of our model over time.
 
 <p align="center">
-  <i>Figure 1: Maps comparing the results of a basic fire propagation model and the results of their proposed wind-aware model. Red indicates area where the model was delayed in burning the terrain when compared to the actual fire. Blue indicates areas where the model was ahead in burning the terrain. Gray shows areas where the model and actual fire where aligned.</i>
+  <img width=700 src="images/image1.png"><br />
+  <img width=800 src="images/image2.png"><br />
+  <i>A 10 hour simulation run of our barebones model. Without wind the model simply spreads in a uniform and regular square, which does not accurately reflect how fire propagates in real life.</i>
 </p>
 
-Comparing the two maps, the amount of red makes it clear that the basic model does not spread as quickly as needed to match the propagation speed in real life. On the contrary the proposed model seems to keep up for the actual data, though the areas where it is ahead of the real fire shows that it leans towards over-weighting wind's effect.
+The average behavior of our base model yielded an astoundingly rectangular behavior relative to what we expected of the fire based on the models in the paper. We suspect that this is a direct result of the data we used, as the wording in the paper made it extremely difficult to perfectly replicate their method of parsing and interpretation. As such, the system parameters used in the published model might not have been fine-tuned to match our dataset, resulting in an overall higher and more uniform probabilities of fire propagation.
 
-The graphs they produce offer compelling evidence for the validity of their model, and show that wind speed and direction are potential principal factors in determing the spread of wildfire.
+# Replication of Modified Model
+
+To modify their base model to produce more accurate results, Freire et al. introduce a new rule when defining the behavior of their cellular automata. The new rule is defined to be:
+
+> If a location’s wind speed exceeds a defined threshold and the angle between the current wind direction and desired direction of propagation is less than another threshold , then fire can spread to any next-nearest non-adjacent cells in the direction of the wind.
+
+Programatically, we implemented this new rule by defining a 5x5 kernel of next-nearest neighbors. For each burning cell at every timestep, we use the known wind speed and wind direction to check each of the listed criteria in the new rule. If a candidate cell fulfilled all the criteria, we set that candidate to burning. This method allowed fire to jump obstacles just as nonflammable rivers or low-fuel sparse vegetation.
+
+<p align="center">
+  <img width=200 src="images/image6.png"><br />
+  <i>In the kernel above, the orange square defines the current burning cell being considered. White squares are not considered in the propagation of fire to the green next-neighbor cells. For the purposes of simplicity, we define the neighbors in terms of offsets from the considered cell. This puts the upper left corner at an offset of (-2, -2) and the lower right at an offset of (2, 2).</i>
+</p>
+
+Performing the same simulation runs as we did for our initial experiment, we produced much more promising results.
+
+<p align="center">
+  <img width=400 src="images/image5.png"><br />
+</p>
+
+Our modified model results in a faster propagation of fire from its initial starting location in the same amount of time. In addition, it spreads down and to the right, which is much more accurate to how the how the real-world fire spread.
+
+Performing the same simulation runs as we did for our initial experiment, we produced much more promising results. Our modified model results in a faster propagation of fire from its initial starting location in the same amount of time. In addition, it spreads down and to the right, which is much more accurate to how the how the real-world fire spread.
+
+<p align="center">
+  <img width=700 src="images/image3.png"><br />
+  <img width=800 src="images/image2.png"><br />
+  <i>A 10 hour simulation run of our modified model, which appears to be more realistic.</i>
+</p>
+
+The model seems to be less uniformly predictable across all 100 simulation runs. As our model is based off of so many environmental factors, the variance between runs makes it more realistic to a real-life fire.
