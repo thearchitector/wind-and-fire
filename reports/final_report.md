@@ -6,6 +6,8 @@ While cellular automata have often been used to simulate wildfires, a devastatin
 
 We attempt to answer whether or not the inclusion of wind data in a fire-modeling cellular automata has a significant impact on the overall behavior of a system. To do so we replicate a model proposed by Freire et al. and make use of NumPy to perform iterative probability-based array operations. We visualize the results using Seaborn and matplotlib and conclude, in agreement with the original authors, that the inclusion of wind data has a very significant impact on the spread of fire under numerous environmental conditions.
 
+[The code.](https://colab.research.google.com/drive/1oxDOWZ2jLf-vwF6y1FeO4pElzdakRbbm)
+
 # Replication of Base Model
 Freire et al. proposed that the incorporation of wind speeds in forest models may create more accurate explanations of fire spread. As an initial experiment, our objective was to verify their claims and determine whether factoring in winds creates a better model by comparing our models with real world wildfire data. We replicated their initial cellular model, which adjusts burn and spread probabilities depending on wind speed and direction.
 
