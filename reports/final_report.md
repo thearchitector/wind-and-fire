@@ -88,7 +88,7 @@ To visualize, we created probability heatmaps for varying values of p0, an exper
   <i>A series of 10 hour long simulation runs with varying initial burn probabilities.</i>
 </p>
 
-Sweeping over the discrete number of initial proabilities, we found that an initial constant of p0 = 0.2 shows a more realistic propigation model. Alarmingly, we observed that the fire model could vary quite drastically with extremely small changes in p0, around 0.05. This fragility indicated that the model proposed by Freire et al. is beneficial only when a substantial amount of time is spent tuning its runtime parameters. In a real-world situation, where this simulation would be used to allocate disaster-relief resources, our experiment provides a counter argument to the author's conclusion that their CA can be used to quickly and effectivly model fire spread.
+Sweeping over the discrete number of initial proabilities, we found that an initial constant between 0.1-0.2 (p0 = 0.2) shows a more realistic propigation model. Alarmingly, we observed that the fire model could vary quite drastically with extremely small changes in p0, around 0.05. This fragility indicated that the model proposed by Freire et al. is beneficial only when a substantial amount of time is spent tuning its runtime parameters. In a real-world situation, where this simulation would be used to allocate disaster-relief resources, our experiment provides a counter argument to the author's conclusion that their CA can be used to quickly and effectivly model fire spread.
 
 ## Bibliography
 ### Using cellular automata to simulate wildfire propagation and to assist in fire management
