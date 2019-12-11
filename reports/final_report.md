@@ -1,7 +1,7 @@
 # Determining the Effect of Wind on Fire Propagation
 by Elias Gabriel and Erika Lu
 
-# Backround Context
+# Abstract
 While cellular automata have often been used to simulate wildfires, a devastating fire that hit the forests of Southern Portugal in 2012 exhibited an explosive behavior that was not well captured by existing models. Models for fire spread are valuable to disaster relief organizations and volunteers, as they can help identify where relief resources can be allocated. In these cases, it is important for models to reasonably accurately predict spread patterns and disaster zones.
 
 # Replication of Base Model
@@ -41,7 +41,6 @@ Running our simulation 100 times and recording the results, we were also able to
 The average behavior of our base model yielded an astoundingly rectangular behavior relative to what we expected of the fire based on the models in the paper. We suspect that this is a direct result of the data we used, as the wording in the paper made it extremely difficult to perfectly replicate their method of parsing and interpretation. As such, the system parameters used in the published model might not have been fine-tuned to match our dataset, resulting in an overall higher and more uniform probabilities of fire propagation.
 
 # Replication of Modified Model
-
 To modify their base model to produce more accurate results, Freire et al. introduce a new rule when defining the behavior of their cellular automata. The new rule is defined to be:
 
 > If a location’s wind speed exceeds a defined threshold and the angle between the current wind direction and desired direction of propagation is less than another threshold , then fire can spread to any next-nearest non-adjacent cells in the direction of the wind.
@@ -56,7 +55,7 @@ Programatically, we implemented this new rule by defining a 5x5 kernel of next-n
 Performing the same simulation runs as we did for our initial experiment, we produced much more promising results.
 
 <p align="center">
-  <img width=400 src="images/image5.png"><br />
+  <img width=400 src="images/image5.gif"><br />
 </p>
 
 Our modified model results in a faster propagation of fire from its initial starting location in the same amount of time. In addition, it spreads down and to the right, which is much more accurate to how the how the real-world fire spread.
@@ -70,6 +69,19 @@ Performing the same simulation runs as we did for our initial experiment, we pro
 </p>
 
 The model seems to be less uniformly predictable across all 100 simulation runs. As our model is based off of so many environmental factors, the variance between runs makes it more realistic to a real-life fire.
+
+# Experimental Extension
+Our primary concern was reconstructing the environmental data that Freire et al. used in their paper to calculate the probabilities of fire spread for each cell in their baseline CA. They state that they used data from various cited sources, but do not go into a lot of detail about how they compiled it. We believe that our results do not match those of the paper due to inconsistencies in the compilation of the data. To reduce the error in our comparison, we experimentally fine-tuned our parameters to get more coherent results.
+
+To visualize created probability heatmaps (the probability that a spot is burned over 100 simulation runs) for varying values of p0, an arbitrary probability constant that was given to us by the paper. The paper’s initial value of p0 was 0.58.
+
+<p align="center">
+  <img width=700 src="images/image4.png"><br />
+  <img width=800 src="images/image2.png"><br />
+  <i>A series of 10 hour long simulation runs with varying initial burn probabilities.</i>
+</p>
+
+Sweeping over the discrete number of initial proabilities, we found that an initial constant of p0 = 0.1 shows a more realistic propigation model.
 
 ## Bibliography
 ### Using cellular automata to simulate wildfire propagation and to assist in fire management
