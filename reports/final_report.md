@@ -1,4 +1,4 @@
-# Determining the Effect of Wind on Fire Propagation
+# Determining the Effect of Wind on a CA-based Fire Propagation Model
 by Elias Gabriel and Erika Lu
 
 # Abstract
