@@ -70,3 +70,12 @@ Performing the same simulation runs as we did for our initial experiment, we pro
 </p>
 
 The model seems to be less uniformly predictable across all 100 simulation runs. As our model is based off of so many environmental factors, the variance between runs makes it more realistic to a real-life fire.
+
+## Bibliography
+### Using cellular automata to simulate wildfire propagation and to assist in fire management
+
+[https://doi.org/10.5194/nhess-19-169-2019](https://doi.org/10.5194/nhess-19-169-2019)
+
+E. Gomes; P. Abrantes; A. Banos; J. Rocha, **Natural Hazards Earth System Sciences (2019)**: 169–179; 
+
+> The authors experiment with a basic forest fire cellular automaton and compare their results to the real-life Algarve event in July of 2012. Based on initial tests and comparisons to the real-world fire spread rate, they suggest that the inclusion of wind and spread to non-adjacent neighbors would make the model more realistic. They experiment with a model that implements wind-caused spread and conclude that its inclusion results in a more realistic forest fire model, and that this new model can be more helpful to firefighters and disaster relief agents in determining where to combat fire spread.
